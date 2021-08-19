@@ -43,7 +43,8 @@ Merupakan method yang digunakan untuk memutasi (mengubah) State. anggap saja sep
 State. 
 
 Rules of Thumb:
-- Mutation **TIDAK BOLEH** dipanggil secara langsung
+- Mutation boleh dipanggil secara langsung untuk mengubah state, namun prefer via action
+  (action -> mutation -> state)
 - Mutation umumnya bersifat **SYNCHRONOUS**,   
   jangan gunakan hal hal bersifat asynchronous pada Mutation !  
   (mis: Fetch data adalah Async jadi tidak boleh di Mutation, tapi ketika data sudah selesai  
