@@ -8,10 +8,35 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    // data incremental yang akan digunakan
+    initialNumber: 0,
+
+    // data yang digunakan untuk form
+    // karena form datanya bisa tidak hanya satu
+    // akan kita definisikan dalam bentuk Object
+    formData: {
+      value: "Placeholder",
+    },
+
     // Kumpulan dari jokes
     jokes: [],
   },
   mutations: {
+    // method mutation untuk mengubah state initialNumber
+    // parameter pertama adalah state, untuk mengakses data dari state yang ada
+    // parameter kedua (OPTIONAL) adalah payload
+    // - berisi data yang dibutuhkan untuk mengubah state tersebut
+    CHANGE_INCREMENTAL(state) {
+      state.initialNumber += 10000;
+    },
+
+    // method mutation untuk menghandle Form
+    // karena kita butuh data perubahan, maka kita akan memanfaatkan
+    // parameter kedua dari mutation untuk mengubah data
+    FORM_HANDLER(state, payload) {
+      state.formData = payload;
+    },
+
     // method mutation untuk mengubah state jokes
     // parameter pertama adalah state, untuk mengakses data dari state yang ada
     // parameter kedua (OPTIONAL) adalah payload
