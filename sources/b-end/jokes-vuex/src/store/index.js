@@ -66,11 +66,13 @@ export default new Vuex.Store({
     // (Karena hanya fetch data saja)
     async fetchJokes(context) {
       try {
-        const response = await jokesApi.get("/jokes/programming/ten");
+        const response = await jokesApi.get(
+          "/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=twopart&amount=10"
+        );
 
         // set state jokes, TAPI tidak boleh diset langsung
         // harus diset via mutations
-        const jokes = response.data;
+        const jokes = response.data.jokes;
 
         // set state jokes dilakukan via context.commit
         context.commit("COMMIT_JOKES", jokes);

@@ -3,7 +3,7 @@
     <tr>
       <td class="border border-gray-300">{{ joke.id }}</td>
       <td class="border border-gray-300">{{ joke.setup }}</td>
-      <td class="border border-gray-300">{{ joke.punchline }}</td>
+      <td class="border border-gray-300">{{ joke.delivery }}</td>
     </tr>
   </tbody>
 </template>

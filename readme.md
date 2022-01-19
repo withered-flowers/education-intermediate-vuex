@@ -85,7 +85,7 @@ sebuah aplikasi berbasis VueX yang memiliki beberapa fitur utama:
 - Sebuah form dan hasil panggilan formnya, dibuat dalam 2 component yang berbeda juga.   
   (Kiri: Form, Kanan, tampilan hasil form setelah disubmit)
 - Sebuah tabel yang akan menampilkan list jokes dari situs   
-  https://official-joke-api.appspot.com/, terdiri dari 2 component berupa `TableList` yang   didalamnya terdapat component `TableContent`.
+  https://v2.jokeapi.dev/, terdiri dari 2 component berupa `TableList` yang   didalamnya terdapat component `TableContent`.
 
 Keseluruhan aplikasi ini akan memanfaatkan VueX.
 
@@ -607,7 +607,7 @@ Untuk bisa menyelesaikan itu, maka kita harus menyiapkan provider data berupa
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://official-joke-api.appspot.com/",
+  baseURL: "https://v2.jokeapi.dev/",
 });
 
 export default instance;
@@ -685,11 +685,13 @@ import jokesApi from '../apis/jokes';
     // tambahkan kata kata async karena kita akan menunggu fetch data dari axios
     async fetchJokes(context) {
       try {
-        const response = await jokesApi.get("/jokes/programming/ten");
+        const response = await jokesApi.get(
+          "/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=twopart&amount=10"
+        );
 
         // set state jokes, TAPI tidak boleh diset langsung
         // harus diset via mutations
-        const jokes = response.data;
+        const jokes = response.data.jokes;
 
         // set state jokes dilakukan via context.commit
         context.commit("COMMIT_JOKES", jokes);
@@ -815,7 +817,7 @@ yang dilempar (tentu saja dengan ... `props`)
     <tr>
       <td class="border border-gray-300">{{ joke.id }}</td>
       <td class="border border-gray-300">{{ joke.setup }}</td>
-      <td class="border border-gray-300">{{ joke.punchline }}</td>
+      <td class="border border-gray-300">{{ joke.delivery }}</td>
     </tr>
   </tbody>
 </template>

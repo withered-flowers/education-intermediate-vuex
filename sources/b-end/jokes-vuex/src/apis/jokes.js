@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://official-joke-api.appspot.com/",
+  baseURL: "https://v2.jokeapi.dev/",
 });
 
 export default instance;
